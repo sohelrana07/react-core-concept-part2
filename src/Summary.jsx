@@ -30,3 +30,12 @@
 //   const data = await res.json();
 //   return data;
 // };
+
+/****
+ *
+ * 1. event trigger
+ * 2. state
+ * 3. Data load from API
+ * 4. loop through to display data
+ * 5. why we use key prop
+ */

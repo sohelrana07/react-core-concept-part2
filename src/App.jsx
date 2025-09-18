@@ -9,6 +9,10 @@ import Villages from "./Villages";
 import Posts from "./Posts";
 import Details from "./Details";
 import Devices from "./Devices";
+import Carts from "./Carts";
+import Task1 from "./Task1";
+import Task2 from "./Task2";
+import Task3 from "./Task3";
 import "./App.css";
 import { Suspense } from "react";
 
@@ -53,12 +57,24 @@ const fetchDevices = fetch("https://jsonplaceholder.typicode.com/posts").then(
   (res) => res.json()
 );
 
+const fetchCarts = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  return res.json();
+};
+
+const fetchTasks = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  return res.json();
+};
+
 function App() {
   const friendsPromise = fetchFriends();
   const countriesPromise = fetchCountries();
   const villagesPromise = fetchVillages();
   const postsPromise = fetchPosts();
   const detailsPromise = fetchDetails();
+  const cartsPromise = fetchCarts();
+  const tasksPromise = fetchTasks();
 
   function handleClick() {
     alert("I am clicked");
@@ -76,6 +92,16 @@ function App() {
   return (
     <>
       <h3>Vite + React</h3>
+
+      {/* <Players></Players> */}
+
+      <Suspense fallback={<h3>Loading...</h3>}>
+        <Task3 tasksPromise={tasksPromise}></Task3>
+      </Suspense>
+
+      <Task1></Task1>
+
+      <Task2></Task2>
 
       {/* <Suspense fallback={<h3>Loading...</h3>}>
         <Users fetchUser={fetchUser}></Users>
@@ -109,9 +135,13 @@ function App() {
         <Details detailsPromise={detailsPromise}></Details>
       </Suspense> */}
 
-      <Suspense fallback={<h3>wait a second...</h3>}>
+      {/* <Suspense fallback={<h3>wait a second...</h3>}>
         <Devices fetchDevices={fetchDevices}></Devices>
-      </Suspense>
+      </Suspense> */}
+
+      {/* <Suspense fallback={<h4>just a second....</h4>}>
+        <Carts cartsPromise={cartsPromise}></Carts>
+      </Suspense> */}
 
       <Batsman></Batsman>
 
